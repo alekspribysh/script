@@ -4,10 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
-
-import java.security.Key;
 
 
 /**
@@ -18,6 +17,7 @@ public class FilloutForm {
 
     //System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
     WebDriver driver = new ChromeDriver();
+   // WebDriver driver = new HtmlUnitDriver();
 
     //WebDriver driver = new FirefoxDriver();
 
@@ -66,39 +66,20 @@ public class FilloutForm {
         driver.findElement(By.id("chkCopyToNextWeek")).click();
         driver.findElement(By.id("chkMealBreak")).click();
         driver.findElement(By.id("LinkNext")).click();
-        WebElement d0  = driver.findElement(By.id("txtHoursRow0Day0"));
-        d0.clear();
-        d0.sendKeys("08:00");
-        WebElement d1  = driver.findElement(By.id("txtHoursRow0Day1"));
-        d1.clear();
-        d1.sendKeys("08:00");
-        WebElement d2  = driver.findElement(By.id("txtHoursRow0Day2"));
-        d2.clear();
-        d2.sendKeys("08:00");
-        WebElement d3  = driver.findElement(By.id("txtHoursRow0Day3"));
-        d3.clear();
-        d3.sendKeys("08:00");
-        WebElement d4  = driver.findElement(By.id("txtHoursRow0Day4"));
-        d4.clear();
-        d4.sendKeys("08:00");
-        WebElement l0 =  driver.findElement(By.id("txtHoursRow1Day0"));
-        l0.clear();
-        l0.sendKeys("00:30");
-        WebElement l1 =  driver.findElement(By.id("txtHoursRow1Day1"));
-        l1.clear();
-        l1.sendKeys("00:30");
-        WebElement l2 =  driver.findElement(By.id("txtHoursRow1Day2"));
-        l2.clear();
-        l2.sendKeys("00:30");
-        WebElement l3 =  driver.findElement(By.id("txtHoursRow1Day3"));
-        l3.clear();
-        l3.sendKeys("00:30");
-        WebElement l4 =  driver.findElement(By.id("txtHoursRow1Day4"));
-        l4.clear();
-        l4.sendKeys("00:30");
+
+        for (int i = 0; i < 5; i++ ){
+            WebElement d  = driver.findElement(By.id("txtHoursRow0Day"+i));
+           // d.clear();
+            d.sendKeys("08:00");
+            WebElement l =  driver.findElement(By.id("txtHoursRow1Day"+i));
+          //  l.clear();
+            l.sendKeys("00:30");
+        }
+
         driver.findElement(By.id("chkCopyToNextWeek")).click();
         driver.findElement(By.id("chkMealBreak")).click();
         driver.findElement(By.id("btnSave")).click();
+        driver.quit();
     }
 
 }
